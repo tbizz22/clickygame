@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
 import Card from './Card';
 import GameScore from './Score';
-import teams from '../team.json';
+import Teams from '../team.json';
 
 
 
 class GridContainer extends Component {
     state = {
-        teams,
+        teams: Teams,
         score: {
             currentScore: 0,
             maxScore: 0,
@@ -21,21 +21,41 @@ class GridContainer extends Component {
 
     // register a team as clicked
     clickItem = (id) => {
-        console.log("made it here")
         // get team
         const teamClicked = this.state.teams.filter(team => {
             return team.id === id;
         })[0]
-        console.log(teamClicked)
-    
-        // is the item already clicked 
 
-        
-        // {
+        const teamLocationinIndex = this.state.teams.findIndex(team => {
+            return team.id === id;
+        }
+        )
+
+
+
+        console.log('teamclicked' + teamClicked)
+        console.log('teamindex' + teamLocationinIndex)
+        // is the item already clicked 
+        if (teamClicked.clicked === true) {
             // game over
-        // } else 
-        //  increase score
-    
+            alert("you already clicked this.")
+        } else {
+            //  increase score
+
+
+            //  modify state 
+            const teamStateCopy = this.state.teams
+            
+            teamStateCopy[teamLocationinIndex].clicked = true
+            this.setState({
+                teams:teamStateCopy
+            })
+        }
+
+
+
+
+
     }
     // check if current score is greater than max score
 
