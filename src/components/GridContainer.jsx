@@ -11,12 +11,27 @@ class GridContainer extends Component {
         score: {
             currentScore: 0,
             maxScore: 0,
-        }
+        },
+        randomTeams: []
     };
 
     // component mount
+    componentDidMount() {
+        const randomTeams = this.shuffleArray(this.state.teams)
+        this.setState({ randomTeams: randomTeams })
+
+    }
 
     // randomize team array
+    // direct copy from stack overflow. I feel no shame
+
+    shuffleArray = (array) => {
+        for (let i = array.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [array[i], array[j]] = [array[j], array[i]]; // eslint-disable-line no-param-reassign
+        }
+        return array
+    }
 
 
     // register a team as clicked
@@ -44,17 +59,18 @@ class GridContainer extends Component {
 
 
             //  modify state 
-            const teamStateCopy = this.state.teams
-            
-            teamStateCopy[teamLocationinIndex].clicked = true
+            const teamStateCopy = this.state.teams;
+            teamStateCopy[teamLocationinIndex].clicked = true;
+
             this.setState({
-                teams:teamStateCopy
-            })
+                teams: teamStateCopy
+            });
+
+
         }
 
-
-
-
+        // Shuffle up and deal
+        this.shuffleArray(this.state.teams)
 
     }
     // check if current score is greater than max score
