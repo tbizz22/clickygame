@@ -1,0 +1,44 @@
+[{
+    "id": 29,
+    "name": "Ducks",
+    "clicked": false,
+    "image": "../images/ducks.gif"
+},
+{
+    "id": 30,
+    "name": "Coyotes",
+    "clicked": false,
+    "image": "../images/coyotes.gif"
+},
+{
+    "id": 11,
+    "name": "Bruins",
+    "clicked": false,
+    "image": "../images/bruins.gif"
+},
+{
+    "id": 15,
+    "name": "Sabres",
+    "clicked": false,
+    "image": "../images/Sabres.gif"
+},
+{
+    "id": 23,
+    "name": "Flames",
+    "clicked": false,
+    "image": "../images/flames.gif"
+},
+{
+    "id": 3,
+    "name": "'Canes",
+    "clicked": false,
+    "image": "../images/hurricanes.gif"
+},
+{
+    "id": 20,
+    "name": "'Hawks",
+    "clicked": false,
+    "image": "../images/blackhawks.gif"
+}
+
+]
