@@ -15,9 +15,9 @@ class GridContainer extends Component {
 
     // component mount
     componentDidMount() {
-        const randomTeams = this.shuffleArray(this.state.teams)
-        this.setState({ randomTeams: randomTeams })
-    }
+        const randomTeams = this.shuffleArray(this.state.teams);
+        this.setState({ randomTeams: randomTeams });
+    };
 
     // randomize team array
     // direct copy from stack overflow. I feel no shame :D
@@ -27,7 +27,7 @@ class GridContainer extends Component {
             [array[i], array[j]] = [array[j], array[i]]; // eslint-disable-line no-param-reassign
         }
         return array;
-    }
+    };
 
 
     // register a team as clicked
@@ -35,31 +35,28 @@ class GridContainer extends Component {
         // get team
         const teamClicked = this.state.teams.filter(team => {
             return team.id === id;
-        })[0]
+        })[0];
 
         const teamLocationinIndex = this.state.teams.findIndex(team => {
             return team.id === id;
-        }
-        )
-
-
+        });
 
         console.log(teamClicked)
-        console.log('teamindex' + teamLocationinIndex)
+  
         // is the item already clicked 
         if (teamClicked.clicked === true) {
             // game over
             alert("you already clicked this.")
             this.resetGame()
         } else {
-            //  increase score    
+            //  increase score   
+            // check if current score is greater than max score 
+            const currentScore = this.state.currentScore + 1;
             this.setState({
-                currentScore: this.state.currentScore + 1
-            })
-
-            // check to see if we are over the high score
-            this.checkMaxScore();
-
+                currentScore: currentScore,
+                maxScore: (currentScore >= this.state.maxScore) ? currentScore : this.state.maxScore
+            });
+        
             //  modify state 
             const teamStateCopy = this.state.teams;
             teamStateCopy[teamLocationinIndex].clicked = true;
@@ -68,35 +65,23 @@ class GridContainer extends Component {
                 teams: teamStateCopy
             });
         }
-
         // Shuffle up and deal       
         this.shuffleArray(this.state.teams)
-
-    }
-    
-    // check if current score is greater than max score
-    checkMaxScore = () => {
-        if (this.state.currentScore >= this.state.maxScore) {
-            this.setState({maxScore:this.state.currentScore})
-        } 
-    }
-
+    };
     
 
     // reset game
     resetGame = () => {
         this.setState({
             currentScore: 0
-        })
+        });
 
         const tempArray = this.state.teams;
         tempArray.forEach(team => {
             team.clicked = false
-        })
-        console.log(tempArray)
-        this.setState({ teams: tempArray })
-
-    }
+        });
+        this.setState({ teams: tempArray });
+    };
 
 
 
@@ -126,8 +111,8 @@ class GridContainer extends Component {
                 </div>
             </div>
         )
-    }
-}
+    };
+};
 
 
 

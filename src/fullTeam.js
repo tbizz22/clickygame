@@ -125,5 +125,5 @@
         "image": "../images/jets.gif"
     }
 
-
+]
     export default Teams
